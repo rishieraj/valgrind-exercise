@@ -21,4 +21,11 @@
 # Clean and start over:
   rm -rf build/
 ```
+## Q/As:
+**1. What happens when the executable is linked statically?  Does Valgrind still detect those same bugs?**  
+**Ans:** When the executable is linked statically, valgrind can still detect the same bugs as earlier but it does not report any memory allocations or leaks which we know is incorrect. Additionally it throws numerous conditional jump errors in methods that are not part of our code. Hence valgrind behavious irratically on static linking.
 
+**2. Why or why not?**  
+**Ans:** The issue is that valgrind requires dynamic linking for its functionalities and is therefore not able to suppress a lot of the irrelevant errors in the static linking configuration.
+
+**Note:** The valgrind output before and after the fixes is kept in the [results](results) folder.
